@@ -1,0 +1,6 @@
+framework module SimpleKeyboard {
+  umbrella header "SimpleKeyboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SimpleKeyboard'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SimpleKeyboard.'
+  s.summary          = 'Simple Swift solution for having text input controls not covered by the keyboard.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +18,17 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+SimpleKeyboard addresses a very common problem on the iOS platform: when the keyboard is shown, the content under it is not visible anymore. Since there is no simple or out-of-the-box solution for this, SimpleKeyboard attempts to provide exactly that.
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/SimpleKeyboard'
+  s.homepage         = 'https://github.com/sivu22/SimpleKeyboard'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Sivu22' => 'sivu22@gmail.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/SimpleKeyboard.git', :tag => s.version.to_s }
+  s.author           = { 'Cristian Sava' => 'cristianzsava@gmail.com' }
+  s.source           = { :git => 'https://github.com/sivu22/SimpleKeyboard.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'SimpleKeyboard/Classes/**/*'
   

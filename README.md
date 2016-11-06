@@ -1,6 +1,7 @@
 # SimpleKeyboard
 
-[![CI Status](http://img.shields.io/travis/Sivu22/SimpleKeyboard.svg?style=flat)](https://travis-ci.org/Sivu22/SimpleKeyboard)
+[![Swift](https://img.shields.io/badge/Swift-3.0-brightgreen.svg)]
+[![CI Status](http://img.shields.io/travis/CristianSava/SimpleKeyboard.svg?style=flat)](https://travis-ci.org/CristianSava/SimpleKeyboard)
 [![Version](https://img.shields.io/cocoapods/v/SimpleKeyboard.svg?style=flat)](http://cocoapods.org/pods/SimpleKeyboard)
 [![License](https://img.shields.io/cocoapods/l/SimpleKeyboard.svg?style=flat)](http://cocoapods.org/pods/SimpleKeyboard)
 [![Platform](https://img.shields.io/cocoapods/p/SimpleKeyboard.svg?style=flat)](http://cocoapods.org/pods/SimpleKeyboard)
@@ -22,7 +23,7 @@ pod "SimpleKeyboard"
 
 ## Author
 
-Sivu22, sivu22@gmail.com
+Cristian Sava, cristianzsava@gmail.com
 
 ## License
 
