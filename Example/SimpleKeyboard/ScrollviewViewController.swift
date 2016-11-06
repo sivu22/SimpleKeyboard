@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  Ex1ViewController.swift
 //  SimpleKeyboard
 //
 //  Created by Cristian Sava on 06/11/2016.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SimpleKeyboard
 
-class ViewController: UIViewController {
+class ScrollviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

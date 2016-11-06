@@ -21,7 +21,7 @@ internal struct ObjCMatcherWrapper : Matcher {
 }
 
 // Equivalent to Expectation, but for Nimble's Objective-C interface
-open class NMBExpectation : NSObject {
+public class NMBExpectation : NSObject {
     internal let _actualBlock: () -> NSObject!
     internal var _negative: Bool
     internal let _file: FileString
@@ -35,31 +35,31 @@ open class NMBExpectation : NSObject {
         self._line = line
     }
 
-    fileprivate var expectValue: Expectation<NSObject> {
-        return expect(expression: _file as NSObject?, file: _line){
+    private var expectValue: Expectation<NSObject> {
+        return expect(_file, line: _line){
             self._actualBlock() as NSObject?
         }
     }
 
-    open var withTimeout: (TimeInterval) -> NMBExpectation {
+    public var withTimeout: (TimeInterval) -> NMBExpectation {
         return ({ timeout in self._timeout = timeout
             return self
         })
     }
 
-    open var to: (NMBMatcher) -> Void {
+    public var to: (NMBMatcher) -> Void {
         return ({ matcher in
             self.expectValue.to(ObjCMatcherWrapper(matcher: matcher))
         })
     }
 
-    open var toWithDescription: (NMBMatcher, String) -> Void {
+    public var toWithDescription: (NMBMatcher, String) -> Void {
         return ({ matcher, description in
             self.expectValue.to(ObjCMatcherWrapper(matcher: matcher), description: description)
         })
     }
 
-    open var toNot: (NMBMatcher) -> Void {
+    public var toNot: (NMBMatcher) -> Void {
         return ({ matcher in
             self.expectValue.toNot(
                 ObjCMatcherWrapper(matcher: matcher)
@@ -67,7 +67,7 @@ open class NMBExpectation : NSObject {
         })
     }
 
-    open var toNotWithDescription: (NMBMatcher, String) -> Void {
+    public var toNotWithDescription: (NMBMatcher, String) -> Void {
         return ({ matcher, description in
             self.expectValue.toNot(
                 ObjCMatcherWrapper(matcher: matcher), description: description
@@ -75,11 +75,11 @@ open class NMBExpectation : NSObject {
         })
     }
 
-    open var notTo: (NMBMatcher) -> Void { return toNot }
+    public var notTo: (NMBMatcher) -> Void { return toNot }
 
-    open var notToWithDescription: (NMBMatcher, String) -> Void { return toNotWithDescription }
+    public var notToWithDescription: (NMBMatcher, String) -> Void { return toNotWithDescription }
 
-    open var toEventually: (NMBMatcher) -> Void {
+    public var toEventually: (NMBMatcher) -> Void {
         return ({ matcher in
             self.expectValue.toEventually(
                 ObjCMatcherWrapper(matcher: matcher),
@@ -89,7 +89,7 @@ open class NMBExpectation : NSObject {
         })
     }
 
-    open var toEventuallyWithDescription: (NMBMatcher, String) -> Void {
+    public var toEventuallyWithDescription: (NMBMatcher, String) -> Void {
         return ({ matcher, description in
             self.expectValue.toEventually(
                 ObjCMatcherWrapper(matcher: matcher),
@@ -99,7 +99,7 @@ open class NMBExpectation : NSObject {
         })
     }
 
-    open var toEventuallyNot: (NMBMatcher) -> Void {
+    public var toEventuallyNot: (NMBMatcher) -> Void {
         return ({ matcher in
             self.expectValue.toEventuallyNot(
                 ObjCMatcherWrapper(matcher: matcher),
@@ -109,7 +109,7 @@ open class NMBExpectation : NSObject {
         })
     }
 
-    open var toEventuallyNotWithDescription: (NMBMatcher, String) -> Void {
+    public var toEventuallyNotWithDescription: (NMBMatcher, String) -> Void {
         return ({ matcher, description in
             self.expectValue.toEventuallyNot(
                 ObjCMatcherWrapper(matcher: matcher),
@@ -119,11 +119,11 @@ open class NMBExpectation : NSObject {
         })
     }
 
-    open var toNotEventually: (NMBMatcher) -> Void { return toEventuallyNot }
+    public var toNotEventually: (NMBMatcher) -> Void { return toEventuallyNot }
 
-    open var toNotEventuallyWithDescription: (NMBMatcher, String) -> Void { return toEventuallyNotWithDescription }
+    public var toNotEventuallyWithDescription: (NMBMatcher, String) -> Void { return toEventuallyNotWithDescription }
 
-    open class func failWithMessage(_ message: String, file: FileString, line: UInt) {
+    public class func failWithMessage(_ message: String, file: FileString, line: UInt) {
         fail(message, location: SourceLocation(file: file, line: line))
     }
 }

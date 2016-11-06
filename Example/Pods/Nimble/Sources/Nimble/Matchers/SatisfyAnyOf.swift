@@ -2,11 +2,15 @@ import Foundation
 
 /// A Nimble matcher that succeeds when the actual value matches with any of the matchers
 /// provided in the variable list of matchers. 
-public func satisfyAnyOf<T,U>(matchers: U...) -> NonNilMatcherFunc<T> where U: Matcher, U.ValueType == T {
+public func satisfyAnyOf<T,U>(_ matchers: U...) -> NonNilMatcherFunc<T>
+    where U: Matcher, U.ValueType == T
+{
     return satisfyAnyOf(matchers)
 }
 
-internal func satisfyAnyOf<T,U>(matchers: [U]) -> NonNilMatcherFunc<T> where U: Matcher, U.ValueType == T {
+internal func satisfyAnyOf<T,U>(_ matchers: [U]) -> NonNilMatcherFunc<T>
+    where U: Matcher, U.ValueType == T
+{
     return NonNilMatcherFunc<T> { actualExpression, failureMessage in
         let postfixMessages = NSMutableArray()
         var matches = false
@@ -30,17 +34,13 @@ public func ||<T>(left: NonNilMatcherFunc<T>, right: NonNilMatcherFunc<T>) -> No
     return satisfyAnyOf(left, right)
 }
 
-public func ||<T>(left: FullMatcherFunc<T>, right: FullMatcherFunc<T>) -> NonNilMatcherFunc<T> {
-    return satisfyAnyOf(left, right)
-}
-
 public func ||<T>(left: MatcherFunc<T>, right: MatcherFunc<T>) -> NonNilMatcherFunc<T> {
     return satisfyAnyOf(left, right)
 }
 
 #if _runtime(_ObjC)
 extension NMBObjCMatcher {
-    public class func satisfyAnyOfMatcher(matchers: [NMBObjCMatcher]) -> NMBObjCMatcher {
+    public class func satisfyAnyOfMatcher(_ matchers: [NMBObjCMatcher]) -> NMBObjCMatcher {
         return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
             if matchers.isEmpty {
                 failureMessage.stringValue = "satisfyAnyOf must be called with at least one matcher"

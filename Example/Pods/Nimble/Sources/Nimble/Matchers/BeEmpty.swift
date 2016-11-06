@@ -36,7 +36,7 @@ public func beEmpty() -> NonNilMatcherFunc<NSString> {
 }
 
 // Without specific overrides, beEmpty() is ambiguous for NSDictionary, NSArray,
-// etc, since they conform to SequenceType as well as NMBCollection.
+// etc, since they conform to Sequence as well as NMBCollection.
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
@@ -82,8 +82,8 @@ extension NMBObjCMatcher {
                 let expr = Expression(expression: ({ value as String }), location: location)
                 return try! beEmpty().matches(expr, failureMessage: failureMessage)
             } else if let actualValue = actualValue {
-                failureMessage.postfixMessage = "be empty (only works for NSArrays, NSSets, NSDictionaries, NSHashTables, and NSStrings)"
-                failureMessage.actualValue = "\(classAsString(type(of: actualValue))) type"
+                failureMessage.postfixMessage = "be empty (only works for NSArrays, NSSets, NSIndexSets, NSDictionaries, NSHashTables, and NSStrings)"
+                failureMessage.actualValue = "\(String(describing: type(of: actualValue))) type"
             }
             return false
         }

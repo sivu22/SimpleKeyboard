@@ -1,3 +1,4 @@
+import Dispatch
 import Foundation
 
 /// "Global" state of Nimble is stored here. Only DSL functions should access / be aware of this
@@ -25,14 +26,20 @@ internal class NimbleEnvironment {
         set { NimbleAssertionHandler = newValue }
     }
 
-#if _runtime(_ObjC)
+    var suppressTVOSAssertionWarning: Bool = false
     var awaiter: Awaiter
 
     init() {
+        let timeoutQueue: DispatchQueue
+        if #available(OSX 10.10, *) {
+            timeoutQueue = DispatchQueue.global(qos: .userInitiated)
+        } else {
+            timeoutQueue = DispatchQueue.global(priority: .high)
+        }
+
         awaiter = Awaiter(
             waitLock: AssertionWaitLock(),
-            asyncQueue: dispatch_get_main_queue(),
-            timeoutQueue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0))
+            asyncQueue: .main,
+            timeoutQueue: timeoutQueue)
     }
-#endif
 }

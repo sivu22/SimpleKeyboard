@@ -16,7 +16,7 @@ public class NMBObjCMatcher : NSObject, NMBMatcher {
         self._doesNotMatch = notMatcher
     }
 
-    public convenience init(matcher: MatcherBlock) {
+    public convenience init(matcher: @escaping MatcherBlock) {
         self.init(canMatchNil: true, matcher: matcher)
     }
 
@@ -26,7 +26,7 @@ public class NMBObjCMatcher : NSObject, NMBMatcher {
         }))
     }
 
-    public convenience init(matcher: FullMatcherBlock) {
+    public convenience init(matcher: @escaping FullMatcherBlock) {
         self.init(canMatchNil: true, matcher: matcher)
     }
 
@@ -38,7 +38,7 @@ public class NMBObjCMatcher : NSObject, NMBMatcher {
         }))
     }
 
-    private func canMatch(actualExpression: Expression<NSObject>, failureMessage: FailureMessage) -> Bool {
+    private func canMatch(_ actualExpression: Expression<NSObject>, failureMessage: FailureMessage) -> Bool {
         do {
             if !canMatchNil {
                 if try actualExpression.evaluate() == nil {
@@ -53,7 +53,7 @@ public class NMBObjCMatcher : NSObject, NMBMatcher {
         return true
     }
 
-    public func matches(actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
+    public func matches(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
         let expr = Expression(expression: actualBlock, location: location)
         let result = _match(
             expr,
@@ -65,7 +65,7 @@ public class NMBObjCMatcher : NSObject, NMBMatcher {
         }
     }
 
-    public func doesNotMatch(actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
+    public func doesNotMatch(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool {
         let expr = Expression(expression: actualBlock, location: location)
         let result = _doesNotMatch(
             expr,
