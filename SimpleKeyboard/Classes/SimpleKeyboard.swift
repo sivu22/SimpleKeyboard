@@ -26,7 +26,7 @@ struct Constants {
 
 // MARK: - SimpleKeyboard implementation
 
-class SimpleKeyboard: NSObject {
+public class SimpleKeyboard: NSObject {
 
     private var targetControls: [UIView]
     fileprivate var viewController: UIViewController
@@ -39,18 +39,18 @@ class SimpleKeyboard: NSObject {
     
     // MARK: - UITextField callbacks
     
-    var textFieldDidBeginEditing: ((_ textField: UITextField)->())?
-    var textFieldDidEndEditing: ((_ textField: UITextField)->())?
-    var textFieldShouldReturn: ((_ textField: UITextField)->(Bool))?
+    public var textFieldDidBeginEditing: ((_ textField: UITextField)->())?
+    public var textFieldDidEndEditing: ((_ textField: UITextField)->())?
+    public var textFieldShouldReturn: ((_ textField: UITextField)->(Bool))?
     
     // MARK: - UITextView callbacks
     
-    var textViewShouldBeginEditing: ((_ textView: UITextView)->(Bool))?
-    var textViewShouldEndEditing: ((_ textView: UITextView)->(Bool))?
+    public var textViewShouldBeginEditing: ((_ textView: UITextView)->(Bool))?
+    public var textViewShouldEndEditing: ((_ textView: UITextView)->(Bool))?
     
     // MARK: - Creation
     
-    init(fromViewController vc: UIViewController) {
+    public init(fromViewController vc: UIViewController) {
         targetControls = []
         viewController = vc
     }
@@ -65,7 +65,7 @@ class SimpleKeyboard: NSObject {
         }
     }
     
-    static func createKeyboard(forControls controls: [UIView?], fromViewController vc: UIViewController, andEnable enable: Bool = false) -> SimpleKeyboard? {
+    public static func createKeyboard(forControls controls: [UIView?], fromViewController vc: UIViewController, andEnable enable: Bool = false) -> SimpleKeyboard? {
         var newKeyboard: SimpleKeyboard?
         var validControls: [UIView] = []
         for control in controls {
@@ -89,7 +89,7 @@ class SimpleKeyboard: NSObject {
     
     // MARK: - Exposed actions
     
-    func add(control: UIView, withDoneButtonKeyboard doneButton: Bool = false, doneTarget target: Any? = nil, doneSelector selector: Selector? = nil) {
+    public func add(control: UIView, withDoneButtonKeyboard doneButton: Bool = false, doneTarget target: Any? = nil, doneSelector selector: Selector? = nil) {
         if control is UITextField || control is UITextView {
             targetControls.append(control)
             setDelegate(forControl: targetControls[targetControls.count - 1])
@@ -100,22 +100,22 @@ class SimpleKeyboard: NSObject {
         }
     }
     
-    func enable() {
+    public func enable() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func disable() {
+    public func disable() {
         NotificationCenter.default.removeObserver(self)
     }
     
     // Manually override the active input control
-    func setActive(view: UIView) {
+    public func setActive(view: UIView) {
         activeView = view
     }
     
     // Manually clear the active input control
-    func clearActiveView() {
+    public func clearActiveView() {
         activeView = nil
     }
     
@@ -148,7 +148,7 @@ extension SimpleKeyboard {
         return keyboardToolbar
     }
     
-    static func addKeyboardDoneButton(forInput input: UIView, fromViewController vc: UIViewController, withTarget target: Any? = nil, doneSelector selector: Selector? = nil)
+    public static func addKeyboardDoneButton(forInput input: UIView, fromViewController vc: UIViewController, withTarget target: Any? = nil, doneSelector selector: Selector? = nil)
     {
         let toolbar = createToolbarWithDoneButton(vc, target, selector)
         
@@ -241,28 +241,28 @@ extension SimpleKeyboard: UITextFieldDelegate, UITextViewDelegate {
     
     // MARK: - UITextField
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         activeView = textField
         textFieldDidBeginEditing?(textField)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         activeView = nil
         textFieldDidEndEditing?(textField)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textFieldShouldReturn?(textField) ?? true
     }
     
     // MARK: - UITextView
     
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         activeView = textView
         return textViewShouldBeginEditing?(textView) ?? true
     }
     
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         activeView = nil
         
         return textViewShouldEndEditing?(textView) ?? true
