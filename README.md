@@ -7,9 +7,23 @@
 
 SimpleKeyboard addresses a very common problem on the iOS platform: when the keyboard is shown, it can happen that the input field under it is not visible anymore. Since there is no simple or out-of-the-box general solution for this, SimpleKeyboard attempts to provide exactly that.
 
+What makes SimpleKeyboard simple is the fact it works in every View Controller without requiring UIScrollView, AutoLayout, bottom-constraint or any other stuff that is present in different solutions.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+**Using UIScrollView**
+
+![ScrollView](https://github.com/sivu22/SimpleKeyboard/blob/master/Screenshots/ScrollView.gif)
+
+**Login screen with bottom constraint**
+
+![Login](https://github.com/sivu22/SimpleKeyboard/blob/master/Screenshots/Login.gif)
+
+**TableView with cell containing UITextField**
+
+![TableView](https://github.com/sivu22/SimpleKeyboard/blob/master/Screenshots/TableView.gif)
 
 ## Usage
 
