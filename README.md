@@ -114,6 +114,10 @@ the focus.
 
 For more details, check NoControlsViewController.swift from the example App.
 
+### Things to consider
+- **Always** disable the keyboard after enabling it. Failure to do so will most likely result in a crash.
+- Do not set the delegate for a control which is being handeled by SimpleKeyboard. Depending on code flow, it could render the benefits of SimpleKeyboard useless. If you need to handle a specific UITextField/UITextView, use the setActive and clearActiveView functions accordingly.
+
 ## Installation
 
 ### CocoaPods
