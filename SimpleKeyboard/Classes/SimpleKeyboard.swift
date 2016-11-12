@@ -133,6 +133,17 @@ public class SimpleKeyboard: NSObject {
      */
     public func disable() {
         NotificationCenter.default.removeObserver(self)
+        
+        for control in targetControls {
+            if control.isFirstResponder {
+                control.resignFirstResponder()
+                
+                adaptView(moveUp: false)
+                viewOffset = 0
+                
+                break
+            }
+        }
     }
     
     /**
