@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SimpleKeyboard'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Simple Swift solution for not having text input controls covered by the keyboard.'
 
 # This description is used to generate tags and improve search results.

@@ -1,0 +1,22 @@
+PODS:
+  - Nimble (5.1.0)
+  - Quick (0.10.0)
+  - SimpleKeyboard (0.1.0)
+
+DEPENDENCIES:
+  - Nimble (~> 5.0)
+  - Quick (~> 0.10)
+  - SimpleKeyboard (from `../`)
+
+EXTERNAL SOURCES:
+  SimpleKeyboard:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Nimble: 5ea121a2eda60440287054cde077fc0ad22227b3
+  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  SimpleKeyboard: 07ef16af34f5fd1524c152346c1a7149f622dcf2
+
+PODFILE CHECKSUM: be9b5853e073da637706541f9043d490cb80ec2e
+
+COCOAPODS: 1.1.1
