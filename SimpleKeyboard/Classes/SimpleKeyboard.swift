@@ -65,8 +65,7 @@ public class SimpleKeyboard: NSObject {
         }
     }
     
-    public static func createKeyboard(forControls controls: [UIView?], fromViewController vc: UIViewController, andEnable enable: Bool = false) -> SimpleKeyboard? {
-        var newKeyboard: SimpleKeyboard?
+    public static func createKeyboard(forControls controls: [UIView?], fromViewController vc: UIViewController, andEnable enable: Bool = false) -> SimpleKeyboard {
         var validControls: [UIView] = []
         for control in controls {
             if control != nil {
@@ -77,14 +76,16 @@ public class SimpleKeyboard: NSObject {
         }
         
         if validControls.count > 0 {
-            newKeyboard = SimpleKeyboard(withControls: validControls, fromViewController: vc)
+            var newKeyboard = SimpleKeyboard(withControls: validControls, fromViewController: vc)
             
             if enable {
-                newKeyboard!.enable()
+                newKeyboard.enable()
             }
+            
+            return newKeyboard
         }
         
-        return newKeyboard
+        return SimpleKeyboard(fromViewController: vc)
     }
     
     // MARK: - Exposed actions
