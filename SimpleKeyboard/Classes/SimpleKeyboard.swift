@@ -1,6 +1,5 @@
 //
 //  SimpleKeyboard.swift
-//  AnyTracker
 //
 //  Created by Cristian Sava on 06/11/16.
 //  Copyright © 2016 Cristian Sava. All rights reserved.
