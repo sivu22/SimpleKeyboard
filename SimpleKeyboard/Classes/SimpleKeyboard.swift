@@ -38,20 +38,26 @@ public class SimpleKeyboard: NSObject {
     
     // MARK: - UITextField callbacks
     
+    /// Callback called from delegate textFieldDidBeginEditing method
     public var textFieldDidBeginEditing: ((_ textField: UITextField)->())?
+    /// Callback called from delegate textFieldDidEndEditing method
     public var textFieldDidEndEditing: ((_ textField: UITextField)->())?
+    /// Callback called from delegate textFieldShouldReturn method
     public var textFieldShouldReturn: ((_ textField: UITextField)->(Bool))?
     
     // MARK: - UITextView callbacks
     
+    /// Callback called from delegate textViewShouldBeginEditing method
     public var textViewShouldBeginEditing: ((_ textView: UITextView)->(Bool))?
+    /// Callback called from delegate textViewShouldEndEditing method
     public var textViewShouldEndEditing: ((_ textView: UITextView)->(Bool))?
     
     // MARK: - Creation
     
     /**
      Designated initializer for creating a SimpleKeyboard with no controls to manage
-     - parameter vc: UIViewController which handles the keyboard
+     
+     - Parameter vc: UIViewController which handles the keyboard
     */
     public init(fromViewController vc: UIViewController) {
         targetControls = []
@@ -70,9 +76,10 @@ public class SimpleKeyboard: NSObject {
     
     /**
      Factory method for creating a SimpleKeyboard with a series of controls to manage
-     - parameter controls: Array of UITextField and UITextView. Any other control type will be disregarded.
-     - parameter vc: UIViewController which handles the keyboard
-     - parameter enable: If true, enables the keyboard after creating it
+     
+     - Parameter controls: Array of UITextField and UITextView. Any other control type will be disregarded.
+     - Parameter vc: UIViewController which handles the keyboard
+     - Parameter enable: If true, enables the keyboard after creating it
      */
     public static func createKeyboard(forControls controls: [UIView?], fromViewController vc: UIViewController, andEnable enable: Bool = false) -> SimpleKeyboard {
         var validControls: [UIView] = []
@@ -102,10 +109,11 @@ public class SimpleKeyboard: NSObject {
     
     /**
      Specify a control to be managed by SimpleKeyboard
-     - parameter control: UITextField and UITextView which will be managed by SimpleKeyboard. Any other control type will be ignored.
-     - parameter doneButton: If true, add a toolbar with Done button to the keyboard
-     - parameter target: The target which will receive the selector
-     - parameter selector: Callback to be called on the target
+     
+     - Parameter control: UITextField and UITextView which will be managed by SimpleKeyboard. Any other control type will be ignored.
+     - Parameter doneButton: If true, add a toolbar with Done button to the keyboard
+     - Parameter target: The target which will receive the selector
+     - Parameter selector: Callback to be called on the target
      */
     public func add(control: UIView, withDoneButtonKeyboard doneButton: Bool = false, doneTarget target: Any? = nil, doneSelector selector: Selector? = nil) {
         if control is UITextField || control is UITextView {
@@ -147,7 +155,8 @@ public class SimpleKeyboard: NSObject {
     
     /**
      Manually override the active input control.
-     - parameter view: The current view which receives focus.
+     
+     - Parameter view: The current view which receives focus.
      */
     public func setActive(view: UIView) {
         activeView = view
