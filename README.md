@@ -130,7 +130,7 @@ pod 'SimpleKeyboard'
 or
 
 ```ruby
-pod 'SimpleKeyboard', '~> 0.1.0'
+pod 'SimpleKeyboard', '~> 0.1.1'
 ```
 
 ### Manually
