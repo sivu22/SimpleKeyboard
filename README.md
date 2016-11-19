@@ -15,15 +15,15 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 **Using UIScrollView**
 
-![ScrollView](https://github.com/sivu22/SimpleKeyboard/blob/master/Screenshots/ScrollView.gif)
+![ScrollView](/Screenshots/ScrollView.gif)
 
 **Login screen with bottom constraint**
 
-![Login](https://github.com/sivu22/SimpleKeyboard/blob/master/Screenshots/Login.gif)
+![Login](Screenshots/Login.gif)
 
 **TableView with cell containing UITextField**
 
-![TableView](https://github.com/sivu22/SimpleKeyboard/blob/master/Screenshots/TableView.gif)
+![TableView](Screenshots/TableView.gif)
 
 ## Usage
 
