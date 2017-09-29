@@ -216,7 +216,7 @@ extension SimpleKeyboard {
     
     func keyboardWillShow(_ notification: NSNotification) {
         var keyboardHeight: CGFloat = 0
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
         }
         
