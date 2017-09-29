@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SimpleKeyboard  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="SimpleKeyboard  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">SimpleKeyboard Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">SimpleKeyboard Reference</a>
+        <img id="carat" src="img/carat.png" />
+        SimpleKeyboard  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/SimpleKeyboard.html">SimpleKeyboard</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#simplekeyboard' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='simplekeyboard'>SimpleKeyboard</h1>
+
+<p><img src="https://img.shields.io/badge/Swift-3.0-brightgreen.svg" alt="Swift">
+<a href="http://cocoapods.org/pods/SimpleKeyboard"><img src="https://img.shields.io/cocoapods/v/SimpleKeyboard.svg?style=flat" alt="Version"></a>
+<a href="http://cocoapods.org/pods/SimpleKeyboard"><img src="https://img.shields.io/cocoapods/l/SimpleKeyboard.svg?style=flat" alt="License"></a>
+<a href="http://cocoapods.org/pods/SimpleKeyboard"><img src="https://img.shields.io/cocoapods/p/SimpleKeyboard.svg?style=flat" alt="Platform"></a></p>
+
+<p>SimpleKeyboard addresses a very common problem on the iOS platform: when the keyboard is shown, it can happen that the input field under it is not visible anymore. Since there is no simple or out-of-the-box general solution for this, SimpleKeyboard attempts to provide exactly that.</p>
+
+<p>What makes SimpleKeyboard simple is the fact it works in every View Controller without requiring UIScrollView, AutoLayout, bottom-constraint or any other stuff that is present in different other solutions.</p>
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example'>Example</h2>
+
+<p>To run the example project, clone the repo, and run <code>pod install</code> from the Example directory first.</p>
+
+<p><strong>Using UIScrollView</strong></p>
+
+<p><img src="/Screenshots/ScrollView.gif" alt="ScrollView"></p>
+
+<p><strong>Login screen with bottom constraint</strong></p>
+
+<p><img src="Screenshots/Login.gif" alt="Login"></p>
+
+<p><strong>TableView with cell containing UITextField</strong></p>
+
+<p><img src="Screenshots/TableView.gif" alt="TableView"></p>
+<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+
+<p>SimpleKeyboard is designed for flexibility, that&rsquo;s why there are 3 ways you can use it:
+- <strong>Automatic</strong>: takes away all the delegate/keyboard code from your ViewController. You just specify or configure the IBOutlets and you&rsquo;re done. 
+- <strong>Manual</strong>: you have full control over all UITextField/UITextView in the ViewController. The keyboard still works nicely, but you have to notify SimpleKeyboard of the current input control.
+- <strong>Combined</strong>: SimpleKeyboard will manage some of the input controls for you, while the rest are left in your care.</p>
+<a href='#creation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='creation'>Creation</h3>
+
+<p>First of all, import SimpleKeyboard into your View Controller and declare a new variable
+<code>swift
+var simpleKeyboard: SimpleKeyboard!
+</code></p>
+
+<p>Now create the keyboard object in onViewDidLoad
+&ldquo;`swift
+override func viewDidLoad() {
+        super.viewDidLoad()</p>
+<pre class="highlight plaintext"><code>    simpleKeyboard = SimpleKeyboard.createKeyboard(forControls: [firstTextField, secondTextField, 
+                                                                 firstTextView, thirdTextField], 
+                                                   fromViewController: self)
+}
+</code></pre>
+<pre class="highlight plaintext"><code>
+If there's a need for a keyboard toolbar for a specific control (on a UITextView or a numeric keyboard), use the add function to let SimpleKeyboard manage it for you
+```swift
+simpleKeyboard.add(control: specificTextView, withDoneButtonKeyboard: true)
+// Use selector when wanting to process pressing Done button
+simpleKeyboard.add(control: lastVisibleTextField, withDoneButtonKeyboard: true, 
+                   doneTarget: self, doneSelector: #selector(donePressed(_:)))
+</code></pre>
+
+<p>If you don&rsquo;t want SimpleKeyboard to manage anything, only to correctly handle appearing and disappearing of the keyboard, then simply instantiate without any control
+<code>swift
+simpleKeyboard = SimpleKeyboard(fromViewController: self)
+</code></p>
+<a href='#enabling-disabling' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='enabling-disabling'>Enabling/Disabling</h3>
+
+<p>Override viewDidAppear and viewDidDisappear in order to start and stop using SimpleKeyboard
+&rdquo;`swift
+override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)</p>
+<pre class="highlight plaintext"><code>    simpleKeyboard.enable()
+}
+
+override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+
+    simpleKeyboard.disable()
+}
+</code></pre>
+<pre class="highlight plaintext"><code>
+### But wait, I want the keyboard to disappear when I press Return key
+You won't need delegates for that. SimpleKeyboard implements this in an elegant way using callbacks for catching different events.
+Just set up the callback like this
+```swift
+override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        simpleKeyboard.enable()
+
+        simpleKeyboard.textFieldShouldReturn = { textField in
+            textField.resignFirstResponder()
+
+            return true
+        }
+    }
+</code></pre>
+
+<p>Keep in mind this will work only for controls managed by SimpleKeyboard. All others are to be handled inside the View Controller using delegates.</p>
+<a href='#inception' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='inception'>Inception</h3>
+
+<p>What about the case when the View Controller manages different views and a UITableView, which also has different input controls in every cell? There are multiple source files with different outlets, what goes where?</p>
+
+<p>It&rsquo;s easy:
+- Create keyboard (with or without specific controls) and enable it
+- Implement delegate functions for begining and ending using the keyboard
+- Inside these delegates, notify SimpleKeyboard of the current view which receives 
+<code>swift
+simpleKeyboard.setActive(view: view)
+</code>
+and loses
+<code>swift
+simpleKeyboard.clearActiveView()
+</code>
+the focus.</p>
+
+<p>For more details, check NoControlsViewController.swift from the example App.</p>
+<a href='#things-to-consider' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='things-to-consider'>Things to consider</h3>
+
+<ul>
+<li><strong>Always</strong> disable the keyboard after enabling it. Failure to do so will most likely result in a crash.</li>
+<li>Do not set the delegate for a control which is being handeled by SimpleKeyboard. Depending on code flow, it could render the benefits of SimpleKeyboard useless. If you need to handle a specific UITextField/UITextView yourself, use the setActive and clearActiveView functions accordingly.</li>
+</ul>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
+
+<p>SimpleKeyboard is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
+it, simply add the following line to your Podfile:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'SimpleKeyboard'</span>
+</code></pre>
+
+<p>or</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'SimpleKeyboard'</span><span class="p">,</span> <span class="s1">'~&gt; 0.1.2'</span>
+</code></pre>
+<a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
+
+<p>Simply copy SimpleKeyboard.swift to your project and you&rsquo;re ready to go.</p>
+<a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author</h2>
+
+<p>Cristian Sava, <a href="mailto:cristianzsava@gmail.com">cristianzsava@gmail.com</a></p>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p>SimpleKeyboard is available under the MIT license. See the LICENSE file for more info.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external">Cristian Sava</a>. All rights reserved. (Last updated: 2016-11-19)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

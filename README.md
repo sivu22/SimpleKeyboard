@@ -41,12 +41,12 @@ var simpleKeyboard: SimpleKeyboard!
 Now create the keyboard object in onViewDidLoad
 ```swift
 override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
         
-        simpleKeyboard = SimpleKeyboard.createKeyboard(forControls: [firstTextField, secondTextField, 
-                                                                     firstTextView, thirdTextField], 
-                                                       fromViewController: self)
-    }
+    simpleKeyboard = SimpleKeyboard.createKeyboard(forControls: [firstTextField, secondTextField,
+                                                                 firstTextView, thirdTextField],
+                                                   fromViewController: self)
+}
 ```
 
 If there's a need for a keyboard toolbar for a specific control (on a UITextView or a numeric keyboard), use the add function to let SimpleKeyboard manage it for you
@@ -66,16 +66,16 @@ simpleKeyboard = SimpleKeyboard(fromViewController: self)
 Override viewDidAppear and viewDidDisappear in order to start and stop using SimpleKeyboard
 ```swift
 override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    super.viewDidAppear(animated)
         
-        simpleKeyboard.enable()
-    }
+    simpleKeyboard.enable()
+}
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
         
-        simpleKeyboard.disable()
-    }
+    simpleKeyboard.disable()
+}
 ```
 
 ### But wait, I want the keyboard to disappear when I press Return key
@@ -83,16 +83,16 @@ You won't need delegates for that. SimpleKeyboard implements this in an elegant 
 Just set up the callback like this
 ```swift
 override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    super.viewDidAppear(animated)
         
-        simpleKeyboard.enable()
+    simpleKeyboard.enable()
             
-        simpleKeyboard.textFieldShouldReturn = { textField in
-            textField.resignFirstResponder()
+    simpleKeyboard.textFieldShouldReturn = { textField in
+        textField.resignFirstResponder()
                 
-            return true
-        }
+        return true
     }
+}
 ```
 Keep in mind this will work only for controls managed by SimpleKeyboard. All others are to be handled inside the View Controller using delegates.
 
@@ -135,7 +135,7 @@ pod 'SimpleKeyboard'
 or
 
 ```ruby
-pod 'SimpleKeyboard', '~> 0.1.2'
+pod 'SimpleKeyboard', '~> 1.0.0'
 ```
 
 ### Manually
