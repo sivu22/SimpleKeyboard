@@ -6,7 +6,7 @@ target 'SimpleKeyboard_Example' do
   target 'SimpleKeyboard_Tests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 0.10'
-  pod 'Nimble', '~> 5.0'
+    pod 'Quick', '~> 1.2.0'
+  pod 'Nimble', '~> 7.0.2'
   end
 end

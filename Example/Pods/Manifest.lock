@@ -1,22 +1,22 @@
 PODS:
-  - Nimble (5.1.0)
-  - Quick (0.10.0)
-  - SimpleKeyboard (0.1.0)
+  - Nimble (7.0.2)
+  - Quick (1.2.0)
+  - SimpleKeyboard (0.1.2)
 
 DEPENDENCIES:
-  - Nimble (~> 5.0)
-  - Quick (~> 0.10)
+  - Nimble (~> 7.0.2)
+  - Quick (~> 1.2.0)
   - SimpleKeyboard (from `../`)
 
 EXTERNAL SOURCES:
   SimpleKeyboard:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Nimble: 5ea121a2eda60440287054cde077fc0ad22227b3
-  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
-  SimpleKeyboard: 07ef16af34f5fd1524c152346c1a7149f622dcf2
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  SimpleKeyboard: 5bb81f4af6cb39d4eba147c1e482a3b12d808da6
 
-PODFILE CHECKSUM: be9b5853e073da637706541f9043d490cb80ec2e
+PODFILE CHECKSUM: 0eec927fc1ec60daede37a440f527479170ab7e0
 
 COCOAPODS: 1.1.1
