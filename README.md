@@ -1,6 +1,6 @@
 # SimpleKeyboard
 
-![Swift](https://img.shields.io/badge/Swift-3.0-brightgreen.svg)
+![Swift](https://img.shields.io/badge/Swift-4-brightgreen.svg)
 [![Version](https://img.shields.io/cocoapods/v/SimpleKeyboard.svg?style=flat)](http://cocoapods.org/pods/SimpleKeyboard)
 [![License](https://img.shields.io/cocoapods/l/SimpleKeyboard.svg?style=flat)](http://cocoapods.org/pods/SimpleKeyboard)
 [![Platform](https://img.shields.io/cocoapods/p/SimpleKeyboard.svg?style=flat)](http://cocoapods.org/pods/SimpleKeyboard)
