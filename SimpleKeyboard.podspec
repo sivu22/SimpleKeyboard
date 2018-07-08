@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SimpleKeyboard'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Simple Swift solution for not having text input controls covered by the keyboard.'
 
   s.description      = 
