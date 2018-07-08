@@ -119,9 +119,9 @@ For more details, check NoControlsViewController.swift from the example App.
 - Do not set the delegate for a control which is being handeled by SimpleKeyboard. Depending on code flow, it could render the benefits of SimpleKeyboard useless. If you need to handle a specific UITextField/UITextView yourself, use the setActive and clearActiveView functions accordingly.
 
 ## Requirements
-- Swift 3
+- Swift 4.1
 - iOS 10.0 +
-- XCode 8.0+
+- XCode 9.4+
 
 ## Installation
 
